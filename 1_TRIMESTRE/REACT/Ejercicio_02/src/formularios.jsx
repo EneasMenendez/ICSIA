@@ -4,7 +4,7 @@ function Formularios() {
       <section class="py-5">
         <div class="container">
           <h2 class="text-success mb-4">Solicita más información</h2>
-          <form>
+          <form name="contacto" netlify>
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre completo</label>
               <input type="text" class="form-control" id="nombre" placeholder="Tu nombre"/>
