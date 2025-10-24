@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectColumn from "./ProjectColumn";
-import { proyectos as proyectosIniciales } from "../datos/Proyectos";
+import { proyectos as proyectosIniciales } from "../Datos/Proyectos";
 
 export default function Dashboard() {
   const [proyectos, setProyectos] = useState(proyectosIniciales);
