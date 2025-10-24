@@ -1,49 +1,54 @@
 import React from "react";
-import { Card, Badge } from "react-bootstrap";
+import { Card, Badge, ListGroup } from "react-bootstrap";
+import { Mail, MapPin, Heart, User } from "lucide-react";
 
-function ProfileCard({ usuario }) {
+export default function ProfileCard({ usuario }) {
   if (!usuario) return null;
 
+  const { nombre, email, avatarUrl, direccion, aficiones } = usuario;
+
   return (
-    <Card className="shadow-sm">
-      <Card.Body>
-        <div className="d-flex align-items-center mb-3">
-          <img
-            src={usuario.avatarUrl}
-            alt={usuario.nombre}
-            className="rounded-circle me-3"
-            width="80"
-            height="80"
-          />
+    <Card className="shadow-sm h-100">
+      <Card.Body className="d-flex flex-column flex-md-row align-items-center align-items-md-start">
+        <img
+          src={avatarUrl}
+          alt={nombre}
+          className="rounded-circle mb-3 mb-md-0 me-md-4"
+          width={120}
+          height={120}
+        />
+        <div className="text-center text-md-start">
+          <Card.Title className="fw-bold d-flex align-items-center gap-2">
+            <User size={22} /> {nombre}
+          </Card.Title>
+          <Card.Subtitle className="text-muted mb-3">{email}</Card.Subtitle>
+
+          <div className="d-flex align-items-center text-muted mb-2">
+            <MapPin size={18} className="me-2" />
+            <span>
+              {direccion.calle}, {direccion.ciudad}
+            </span>
+          </div>
+
           <div>
-            <Card.Title>{usuario.nombre}</Card.Title>
-            <Card.Subtitle className="text-muted">
-              {usuario.email}
-            </Card.Subtitle>
+            <h6 className="fw-semibold mt-3 d-flex align-items-center gap-1">
+              <Heart size={16} /> Aficiones:
+            </h6>
+            <ListGroup horizontal className="flex-wrap">
+              {aficiones.map((a, i) => (
+                <ListGroup.Item
+                  key={i}
+                  className="py-1 px-2 border-0 bg-light rounded-2 me-2 mb-2"
+                >
+                  <Badge bg="primary" text="light">
+                    {a}
+                  </Badge>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
           </div>
         </div>
-
-        <hr />
-
-        <Card.Text>
-          <strong>Información de Contacto</strong><br />
-          <span><strong>Calle:</strong> {usuario.direccion.calle}</span><br />
-          <span><strong>Ciudad:</strong> {usuario.direccion.ciudad}</span>
-        </Card.Text>
-
-        <hr />
-
-        <Card.Text>
-          <strong>Aficiones</strong><br />
-          {usuario.aficiones.map((aficion, index) => (
-            <Badge bg={["primary", "secondary", "success"][index % 3]} key={index} className="me-2">
-              {aficion}
-            </Badge>
-          ))}
-        </Card.Text>
       </Card.Body>
     </Card>
   );
 }
-
-export default ProfileCard;

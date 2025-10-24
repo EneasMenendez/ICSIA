@@ -1,17 +1,20 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
+import { Search } from "lucide-react";
 
-function SearchBar({ valorBusqueda, onBuscar }) {
+export default function SearchBar({ filtro, setFiltro }) {
   return (
-    <Form className="mb-3">
+    <InputGroup className="mb-3">
+      <InputGroup.Text className="bg-white border-end-0">
+        <Search size={18} color="#6c757d" />
+      </InputGroup.Text>
       <Form.Control
         type="text"
         placeholder="Buscar usuario..."
-        value={valorBusqueda}
-        onChange={(e) => onBuscar(e.target.value)}
+        value={filtro}
+        onChange={(e) => setFiltro(e.target.value)}
+        className="border-start-0"
       />
-    </Form>
+    </InputGroup>
   );
 }
-
-export default SearchBar;

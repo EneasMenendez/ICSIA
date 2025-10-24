@@ -1,4 +1,4 @@
-const usuarios = [
+export const usuarios = [
   {
     id: 'u1',
     nombre: 'Ana Martínez',
@@ -110,5 +110,3 @@ const usuarios = [
   aficiones: ['Surf', 'Tecnología', 'Viajar'],
 }
 ];
-
-export default usuarios;

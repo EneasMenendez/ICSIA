@@ -1,21 +1,38 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Image } from "react-bootstrap";
 
-function UserList({ usuarios = [], onSeleccionarUsuario, usuarioActivoId }) {
+export default function UserList({
+  usuarios,
+  onSeleccionarUsuario,
+  usuarioSeleccionadoId,
+}) {
+  if (!usuarios || usuarios.length === 0) {
+    return <p className="text-muted text-center mt-3">No se encontraron usuarios</p>;
+  }
+
   return (
-    <ListGroup>
-      {usuarios.map((usuario) => (
+    <ListGroup variant="flush">
+      {usuarios.map((u) => (
         <ListGroup.Item
-          key={usuario.id}
+          key={u.id}
           action
-          active={usuario.id === usuarioActivoId}
-          onClick={() => onSeleccionarUsuario(usuario.id)}
+          onClick={() => onSeleccionarUsuario(u.id)}
+          active={u.id === usuarioSeleccionadoId}
+          className="d-flex align-items-center gap-3 py-2"
         >
-          {usuario.nombre}
+          <Image
+            src={u.avatarUrl}
+            roundedCircle
+            width={40}
+            height={40}
+            alt={u.nombre}
+          />
+          <div className="flex-grow-1">
+            <span className="fw-semibold">{u.nombre}</span>
+            <div className="small text-muted">{u.email}</div>
+          </div>
         </ListGroup.Item>
       ))}
     </ListGroup>
   );
 }
-
-export default UserList;
