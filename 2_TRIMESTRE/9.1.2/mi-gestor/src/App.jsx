@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+
 import RootLayout from './layouts/RootLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 import HomePage from './pages/HomePage';
@@ -6,7 +8,6 @@ import TaskListPage from './pages/TaskListPage';
 import TaskDetailPage from './pages/TaskDetailPage';
 import NewTaskPage from './pages/NewTaskPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { lazy, Suspense } from 'react';
 
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 
@@ -16,7 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
-          
+
           <Route path="dashboard" element={<DashboardLayout />}>
             <Route index element={<TaskListPage />} />
             <Route path="new" element={<NewTaskPage />} />

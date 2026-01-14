@@ -1,18 +1,24 @@
 import { Container, Typography, Button } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { TASKS } from '../data/tasks';
+import { useDashboard } from '../layouts/DashboardLayout';
 
 export default function TaskDetailPage() {
   const { taskId } = useParams();
   const navigate = useNavigate();
-  const task = TASKS.find(t => t.id === Number(taskId));
+  const { tasks, deleteTask } = useDashboard();
+
+  const task = tasks.find((t) => t.id === Number(taskId));
 
   if (!task) {
-    return <Typography variant="h6" color="error">Tarea no encontrada</Typography>;
+    return (
+      <Container sx={{ mt: 4 }}>
+        <Typography variant="h5" color="error">Tarea no encontrada</Typography>
+      </Container>
+    );
   }
 
   const handleDelete = () => {
-    console.log(`Tarea ${task.id} eliminada`);
+    deleteTask(task.id);
     navigate('/dashboard', { replace: true });
   };
 

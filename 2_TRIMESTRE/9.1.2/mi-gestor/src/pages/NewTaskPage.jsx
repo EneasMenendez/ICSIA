@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useDashboard } from '../layouts/DashboardLayout';
 
 export default function NewTaskPage() {
   const navigate = useNavigate();
+  const { addTask } = useDashboard();
   const [form, setForm] = useState({ title: '', description: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Tarea guardada:', form);
+    if (!form.title.trim()) return;
+    addTask(form);
     navigate('/dashboard');
   };
 
