@@ -11,7 +11,7 @@ export default function ContadorPadre() {
         return Array.from({ length: 500 }, (_, i) => ({
             id: i + 1,
             name: `Usuario ${i + 1}`,
-            email: `usuario${i + 1}@correo.com`,
+            email: `usuario${i + 1}@ejemplo.com`,
             avatar: `https://i.pravatar.cc/150?img=${(i + 1) % 70 + 1}`,
             isOnline: Math.random() > 0.5,
         }));
